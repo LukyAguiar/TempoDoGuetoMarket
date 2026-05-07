@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-background: #0B0F14;
+  --color-surface: #151B23;
+  --color-surface-2: #1C2430;
+  --color-accent: #7C3AED;
+  --color-accent-light: #9D5FF3;
+  --color-border: #2A3441;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+
+  /* text-* shorthands via nested */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #A1A1AA;
+  --color-text-muted: #64748B;
+
+  /* amber for stars */
+  --color-amber-400: #FBBF24;
+
+  /* Fonts */
+  --font-family-sans: 'DM Sans', system-ui, sans-serif;
+  --font-family-display: 'Syne', sans-serif;
+
+  /* Shadows */
+  --shadow-accent-glow: 0 0 30px rgba(124, 58, 237, 0.3);
+
+  /* Background images */
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+
+  /* Animations */
+  --animate-shimmer: shimmer 1.5s infinite;
+  --animate-fade-up: fadeUp 0.5s ease-out forwards;
+  --animate-fade-in: fadeIn 0.4s ease-out forwards;
+  --animate-pulse-accent: pulseAccent 2s ease-in-out infinite;
+
+  /* Keyframes */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @keyframes pulseAccent {
+    0%, 100% { box-shadow: 0 0 20px rgba(124,58,237,0.3); }
+    50% { box-shadow: 0 0 40px rgba(124,58,237,0.6); }
+  }
+}
+
+/* ===================== BASE ===================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #0B0F14;
+  color: #FFFFFF;
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ===================== SCROLLBAR ===================== */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0B0F14; }
+::-webkit-scrollbar-thumb { background: #2A3441; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #7C3AED; }
+
+/* ===================== UTILITIES ===================== */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ===================== ANIMATIONS ===================== */
+.shimmer {
+  background: linear-gradient(90deg, #151B23 25%, #1C2430 50%, #151B23 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #FFFFFF 0%, #A78BFA 50%, #7C3AED 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.5s ease-out forwards;
+  opacity: 0;
+}
+.animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+.animation-delay-100 { animation-delay: 100ms; }
+.animation-delay-200 { animation-delay: 200ms; }
+.animation-delay-300 { animation-delay: 300ms; }
+.animation-delay-400 { animation-delay: 400ms; }
+.animation-delay-500 { animation-delay: 500ms; }
+.pulse-accent { animation: pulseAccent 2s ease-in-out infinite; }
+
+/* ===================== CARD HOVER ===================== */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(124,58,237,0.2);
+  border-color: rgba(124,58,237,0.3) !important;
+}
+
+/* ===================== PRODUCT ROW SNAP ===================== */
+.scroll-snap-x {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.scroll-snap-x > * { scroll-snap-align: start; }
